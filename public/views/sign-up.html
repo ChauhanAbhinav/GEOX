@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>register page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/includes/css/register.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,600,700,900" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.18/angular-ui-router.min.js"></script>
+    
+    <script type="text/javascript" src="/directives/matchPassDir.js"></script><!-- loading directives -->
+    <script type="text/javascript" src="/controllers/signUpCtrl.js"></script><!-- loading controllers -->
+    <script type="text/javascript" src="/services/signUpService.js"></script><!-- loading services -->
+    <script type="text/javascript" src="../registerApp.js"></script> <!-- loading main app -->
+</head>
+<body   ng-app="registerApp" ng-controller="SignUpController">
+    <div class="row">
+        <div class="col-xs-6 col-xs-offset-3 form-wrapper">
+
+            <!-- PAGE HEADER -->
+           <div class="form-head">
+                <div class="logo-wrapper">
+                    <img class="logo" src="/includes/img/logo-32px.png">
+                    <span class="geox">GEOX</span>
+                </div>
+                <span class="sign-up">Sign Up</span>
+            </div>
+
+           <form  class="form" name="userForm" ng-submit="submitForm()" novalidate>
+
+                <!-- NAME -->
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" name="name" class="form-control input" ng-model="user.name" placeholder="Enter Your Name" ng-required="true">
+                    <p ng-show="userForm.name.$error.required && (userForm.name.$touched || submitted)" class="error">Your name is required.</p>
+                </div>
+
+                <!-- FATHER'S NAME -->
+                <div class="form-group">
+                    <label>Father's Name</label>
+                    <input type="text" name="fname" class="form-control input" ng-model="user.fname" placeholder="Enter Your Father's Name" ng-required="true">
+                    <p ng-show="userForm.fname.$error.required && (userForm.fname.$touched || submitted)" class="error">Your father's name is required.</p>
+                </div>
+
+                <!-- Centre id-->
+                    <div class="form-group">
+                    <label>Centre ID</label>
+                    <input type="text" name="cid" class="form-control input" ng-model="user.cid" placeholder="Enter Centre id" ng-required="true">
+                    <p ng-show="userForm.cid.$error.required && (userForm.cid.$touched || submitted)" class="error">Centre ID is required.</p>
+                </div>
+                <!-- enrollment no.-->
+
+                <div class="form-group">
+                    <label>Enrollment No.</label>
+                    <input type="number" name="enr" class="form-control input" ng-model="user.enroll" placeholder="Enter Your Enrollment No." ng-required="true">
+                    <p ng-show="userForm.enr.$error.required && (userForm.enr.$touched || submitted)" class="error">Your enrollment no. is required.</p>
+                </div>
+
+                <!-- EMAIL -->
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" class="form-control input" ng-model="user.email" placeholder="Your Email Address" ng-required="true">
+                    <p ng-show="userForm.email.$error.required && (userForm.email.$touched || submitted)" class="error">Email is required.</p>
+                    <p ng-show="userForm.email.$error.email && (userForm.email.$touched || submitted)" class="error">Enter a valid email.</p>
+                </div>
+
+                <!-- CONTACTNO -->
+                <div class="form-group">
+                    <label>Contact No</label>
+                    <input type="number" name="contactno" class="form-control input" ng-model="user.phone" placeholder="Enter Your Contact No" ng-pattern="/^[6789]\d{9}$/" maxlength="10" ng-required="true">
+                    <p ng-show="(userForm.contactno.$error.pattern || userForm.contactno.$error.required)  && (userForm.contactno.$touched || submitted)" class="error">Enter a valid contact no.</p>
+                </div>
+
+                 <!-- DOB -->
+                <div class="form-group">
+                    <label>Date Of Birth</label>
+                    <input type="Date" name="date" class="form-control input" ng-model="user.dob" placeholder="Enter Your D.O.B" ng-required="true">
+                    <p ng-show="userForm.date.$error.required && (userForm.date.$touched || submitted)" class="error">Date of Birth is required.</p>
+                </div>
+                
+                <!-- Technology -->
+                <div class="form-group">
+                    <label>Technology</label>
+                    <select name="tech" class="form-control input" ng-model="user.tech"
+                            ng-options="tech.Name as tech.Name for tech in techList" ng-required="true">
+                        <option value=''>Select</option>
+                    </select>
+                    <p ng-show="userForm.tech.$error.required  && (userForm.tech.$touched || submitted)" class="error">Select technology.</p>
+                </div>
+
+                <!-- batch timing -->
+                <div class="form-group">
+                    <label>Batch timing</label>
+                    <select name="batch" class="form-control input" ng-model="user.batch"
+                            ng-options="batch.Name as batch.Name for batch in batchList" ng-required="true">
+                        <option value=''>Select</option>
+                    </select>
+                    <p ng-show="userForm.batch.$error.required  && (userForm.batch.$touched || submitted)" class="error">Select BATCH TIMING</p>
+                </div>
+
+                <!-- USERNAME -->
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" class="form-control input" ng-model="user.username" placeholder="Enter Your Username" ng-minlength="3" ng-maxlength="10" ng-required="true">
+                    <p ng-show="userForm.username.$error.required && (userForm.username.$touched || submitted)" class="error">Username is required.</p>
+                    <p ng-show="userForm.username.$error.minlength && (userForm.username.$touched || submitted)" class="error">Username is too short.</p>
+                    <p ng-show="userForm.username.$error.maxlength && (userForm.username.$touched || submitted)" class="error">Username is too long.</p>
+                </div>
+                
+                <!-- PASSWORD -->
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="Password" name="password" class="form-control input" ng-model="user.password" placeholder="Your Password" ng-required="true">
+                    <p ng-show="userForm.password.$error.required && (userForm.password.$touched || submitted)" class="error">Your password is required.</p>
+                </div>
+              
+                <!-- CONFIRM PASSWORD -->
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input type="Password" name="confirmPassword" class="form-control input" ng-model="confirmPassword" placeholder="Confirm Your Password" ng-compare="password" ng-required="true">
+                    <p ng-show="userForm.confirmPassword.$error.required && (userForm.confirmPassword.$touched || submitted)" class="error">Your confirm password is required.</p>
+                    <p ng-show="userForm.confirmPassword.$error.compare  && (userForm.confirmPassword.$touched|| submitted)" class="error">Confirm password does not match.</p>
+                </div>
+
+                <!-- TERMS & CONDITIONS -->
+                <div class="form-group">
+                    <label>Accept Terms & Conditions</label>
+                    <input type="checkbox" class="form-control checkbox" name="terms" ng-model="terms" ng-required="true" />
+                    <p ng-show="userForm.terms.$error.required && (userForm.terms.$touched || submitted)" class="error">Accept terms & conditions.</p>
+                </div>
+
+                <button type="submit" class="sign-up-button">Register</button>
+            </form>
+        </div>
+       
+    </div>
+     <div id="map"></div>   
+</body>
+</html>
+<script>
+function initMap() {
+ var pos = {lat: 26.7880, lng: 75.8275};
+  var map = new google.maps.Map(
+      document.getElementById('map'), {
+        zoom: 15, 
+        center: pos,
+        styles : [{"elementType":"geometry","stylers":[{"color":"#212121"}]},{"elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"elementType":"labels.text.fill","stylers":[{"color":"#757575"}]},{"elementType":"labels.text.stroke","stylers":[{"color":"#212121"}]},{"featureType":"administrative","elementType":"geometry","stylers":[{"color":"#757575"}]},{"featureType":"administrative.country","elementType":"labels.text.fill","stylers":[{"color":"#9e9e9e"}]},{"featureType":"administrative.land_parcel","stylers":[{"visibility":"off"}]},{"featureType":"administrative.locality","elementType":"labels.text.fill","stylers":[{"color":"#bdbdbd"}]},{"featureType":"poi","elementType":"labels.text.fill","stylers":[{"color":"#757575"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#181818"}]},{"featureType":"poi.park","elementType":"labels.text.fill","stylers":[{"color":"#616161"}]},{"featureType":"poi.park","elementType":"labels.text.stroke","stylers":[{"color":"#1b1b1b"}]},{"featureType":"road","elementType":"geometry.fill","stylers":[{"color":"#2c2c2c"}]},{"featureType":"road","elementType":"labels.text.fill","stylers":[{"color":"#8a8a8a"}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#373737"}]},{"featureType":"road.highway","elementType":"geometry","stylers":[{"color":"#3c3c3c"}]},{"featureType":"road.highway.controlled_access","elementType":"geometry","stylers":[{"color":"#4e4e4e"}]},{"featureType":"road.local","elementType":"labels.text.fill","stylers":[{"color":"#616161"}]},{"featureType":"transit","elementType":"labels.text.fill","stylers":[{"color":"#757575"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#000000"}]},{"featureType":"water","elementType":"labels.text.fill","stylers":[{"color":"#3d3d3d"}]}],
+        disableDefaultUI: true  
+
+      });
+}
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7aEXsY5jClGln7NJY0I_ucE4F8bCUIsk&callback=initMap">
+    </script>
+
+

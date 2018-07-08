@@ -1,0 +1,28 @@
+{
+  "name": "GEOX",
+  "version": "1.0.0",
+  "description": "A geofencing project for user location and attendence.\r In collaboration with Ajay sharma and Sahil Mathur.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChauhanAbhinav/GEOX.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChauhanAbhinav/GEOX/issues"
+  },
+  "homepage": "https://github.com/ChauhanAbhinav/GEOX#readme",
+  "dependencies": {
+    "path": "^0.12.7"
+  },
+  "devDependencies": {}
+}

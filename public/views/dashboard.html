@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,500i,600,600i,700,700i,900" rel="stylesheet">
+
+
+	<style >
+	.userlogout a {
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    padding: 5px;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+.userlogout a:hover{
+	background:darkgrey;
+	border:1px solid grey;
+	color:#f2f2f2;
+}
+	#map{
+
+    height: 100%;
+    width: 100%;
+	}
+	.mapwrapper {
+    float: left;
+    height: 100%;
+    width: 1149px;
+}
+	.container{
+		height: 100%;
+		font-family: Poppins;
+
+
+
+	}
+	.panel ul {
+    list-style: none;
+    padding: 0px;
+        margin-top: 65px;
+}
+.panel ul li {
+	text-transform: uppercase;
+    font-size: 18px;
+    padding: 12px 20px;
+    text-align: left;
+}
+.panel ul li:hover{
+	background:darkgrey;
+	border:1px solid grey;
+	color:#f2f2f2;
+
+}
+	.logoandheader {
+    margin: 22px auto;
+    display: block;
+}
+		.sidenav{
+			background-color: black;
+			float: left;
+			height: 100%;
+     		width: 200px;
+			text-align: center;
+		}
+		.mapwrapper{
+			
+			
+	    float: left;
+    	height: 100%;
+    	width: 1148px;
+
+		}
+		.geox {
+    color: white;
+    line-height: 39px;
+    vertical-align: super;
+    text-align: center;
+    padding: 10px;
+    font-weight: bolder;
+    font-size: 22px;
+}
+		.user {
+    color: white;
+    /* display: block; */
+    font-size: 18px;
+    padding: 10px;
+}
+		.mapwrapper{
+			overflow:hidden;
+			
+		}
+		.user-name{
+			color: white:;
+
+		}
+		.userlogout{
+			color: white;
+		}
+		.panel{
+			color: white;
+		}
+		body{
+			margin:0px 0px;
+			height: 100%;
+		}
+		html{
+			margin:0px 0px;
+			height: 100%;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="container">
+		<div class="sidenav" >
+
+			<div class="logopanel">
+			<span class="logoandheader"><img src="/includes/img/logo-32px.png"><span class="geox" >GEOX</span>
+			</span>
+			</div>
+
+				<div class="userpic">
+			<img src="/includes/img/user.png" style="height: 25px;width:25px;">
+				</div>
+
+			<div class="user">
+			<span> user</span>
+			</div>
+
+				
+				<div >
+				<span class="userlogout">
+				<a href ="">User</a> <a href="" >Logout</a>
+				</span>
+				</div>
+			
+				<div class="panel">
+					<ul>
+					<li>Home</li>
+					<li>Attendance</li>
+					<!-- <li>Register user</li> -->
+					<!-- <li>student detail</li>	 -->
+					<li>Profile</li>
+					<li>About GEOX</li>	
+						</ul>
+
+						
+					
+				</div>
+			
+
+			</div>
+
+		<div class="mapwrapper">
+
+			    <div id="map"></div>
+	
+   
+ <div id="map"></div>
+    <script>
+// Initialize and add the map
+function initMap() {
+  // The location of Uluru
+  var cdac = {lat: 26.7881, lng: 75.8274};
+  // The map, centered at Uluru
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 17, center: cdac});
+  // The marker, positioned at Uluru
+  var marker = new google.maps.Marker({position: cdac, map: map});
+}
+    </script>
+    <!--Load the API from the specified URL
+    * The async attribute allows the browser to render the page while the API loads
+    * The key parameter will contain your own API key (which is not needed for this tutorial)
+    * The callback parameter executes the initMap() function
+    -->
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTkHNtSOlEEbF0s2cAyw2SKX-t-eRjTmE&callback=initMap">
+    </script>	
+
+</body>
+</html>

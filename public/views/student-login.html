@@ -1,0 +1,22 @@
+<form name="myForm" novalidate>
+  <div class="form-group">
+    <label for="username">Student Username</label>
+    <input type="text" class="form-control input" id="username" placeholder="Enter Username" ng-model="studentData.username" name="username" ng-required="true">
+     <p ng-show="myForm.username.$invalid && (myForm.username.$touched || submitted)" class="error">Username is required.</p>
+  </div>
+
+  <div class="form-group">
+    <label for="center-id">Center Id</label>
+    <input type="text" class="form-control input" id="center-id" placeholder="Enter Center Id" ng-model="studentData.cid" name="cid" ng-required="true">
+    <span ng-show="myForm.cid.$invalid && (myForm.cid.$touched || submitted)" class="error">The centerId is required</span>
+  </div>
+  
+  <div class="form-group">
+    <label for="pwd">Password:</label>
+    <input type="password" class="form-control input" id="pwd" placeholder="**********" ng-model="studentData.password" name="password" ng-required="true">
+    <span ng-show="myForm.password.$invalid && (myForm.password.$touched || submitted)" class="error">The password is required</span>
+  </div>
+  
+  <button type="submit" name="student-submit" class="login-button" ng-click="student()">Login</button>
+  <div class="sign-up">Not Sign Up?&nbsp;<a class="sign-up-link" href="/views/sign-up.html">Click here</a></div>
+</form>
