@@ -1,3 +1,4 @@
 angular.module('geox', [
-    'mainCtrl',
+    'geolocCtrl',
+    'mapService'
 ]);
