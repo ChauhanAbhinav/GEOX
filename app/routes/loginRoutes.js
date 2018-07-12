@@ -15,9 +15,10 @@ module.exports = function(app,db){
 					if(res)
 					{
 						var log="Student Login Successful";
+						response.redirect("/views/dashboard.html");
 						console.log(log);	
-						response.send(log)
-					}
+						//response.send(log);
+						}
 					else
 					{
 						var log="Username or Password Incorrect";
