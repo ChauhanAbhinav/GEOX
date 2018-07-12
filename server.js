@@ -1,3 +1,5 @@
+var http = require('http');
+var https = require('https');
 var express = require('express');
 var bodyParser=require('body-parser');
 var app=express();
@@ -6,6 +8,12 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 app.use(express.static(__dirname+"/public"));
+//reading ssl certificate for https
+// var fs = require("fs");
+// const options = {
+//   key: fs.readFileSync("./cert/44737450_localhost.key"),
+//   cert: fs.readFileSync("./cert/44737450_localhost.cert")
+// };
 
 // load up login page
 app.get('/', function(req, res) {
@@ -26,6 +34,6 @@ mongo.connect(url,function(err, db){
 		loginRoutes(app,db);
 		console.log("connected to mongodb");
 });
-
-app.listen(8080);
+//https.createServer(options, app).listen(8080); //for secure connection https
+app.listen(8080); // for non secure connection
 console.log("app is listening on port 8080");
