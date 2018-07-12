@@ -109,9 +109,11 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,600,700,900" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.18/angular-ui-router.min.js"></script>
-    
+    <script type="text/javascript" src="/controllers/geolocCtrl.js"></script>
+    <script type="text/javascript" src="/services/mapService.js"></script>
+    <script type="text/javascript" src="./../mainApp.js"></script>
 </head>
-<body ng-app="mainApp" ng-controller="mainCtrl">
+<body ng-app="geox" ng-controller="geolocCtrl">
 	<div class="container">
 		<div class="sidenav" >
 
@@ -155,148 +157,8 @@
  <span style="font-size: 12px;position: absolute;z-index: 9999;left:50%;background-color: #ededed">lat: <span ng-bind="pos.lat"></span><br> long: <span ng-bind="pos.lng"></span></span>
 				
  <div id="map"></div>
-
-		</div>
+	</div>
 </div>
-    <script type="text/javascript">
-	
-	var	app = angular.module('mainApp',[]);
-		app.controller('mainCtrl',function($http, $window, $scope, Map){
-			$scope.pos = {};
-			$scope.cdac = {lat: 26.788286, lng: 75.827287}; 
-			//$scope.pos1={lat: 26.788336, lng: 75.827437};
- 		   	
-		$scope.showLocation = function (position) {
-			$scope.pos.lat=position.coords.latitude;
- 		   	$scope.pos.lng=position.coords.longitude;
- 		   	$scope.$apply(); //refresh the binding
- 		   	Map.init($scope.cdac); //initilize the map at cdac
- 		   	Map.addMarkers($scope.pos);
- 		   	Map.addFence();
- 		   	$scope.getLocationUpdate();
- 		   	$scope.validateLocation();
- 		 }
-         $scope.updateLocation = function (position){
-         	$scope.pos.lat=position.coords.latitude;
- 		   	$scope.pos.lng=position.coords.longitude;
- 		   	//alert("Latitude : " + $scope.pos.lat + " Longitude: " + $scope.pos.lng);
- 		   	$scope.$apply();
- 		   	Map.userMarker.setPosition($scope.pos);
- 		  	$scope.validateLocation(); 
- 		}
- 		$scope.validateLocation = function (){
- 			if(($scope.pos.lat>=26.788134 && $scope.pos.lat<= 26.788336)&&($scope.pos.lng>=75.827062 && $scope.pos.lng<= 75.827437))
- 			{
- 				alert('Attendance Successful');
- 			}
- 			else
- 			{
-
- 			}
- 		}
-         $scope.errorHandler = function (error) {
-           
-            switch(error.code)
-    		{
-        	case error.TIMEOUT:
-            alert("The request to get user location has aborted as it has taken too long.");
-            break;
-			case error.POSITION_UNAVAILABLE:
-            alert("Location information is not available.");
-            break;
-			case error.PERMISSION_DENIED:
-            alert("Permission to share location information has been denied!");
-            break;
-			default:
-            alert("An unknown error occurred.");
-    		}
-         }
-        $scope.getLocationUpdate = function (){
-    			        
-               var options = {enableHighAccuracy: true};
-               geoLoc = navigator.geolocation;
-               wid = geoLoc.watchPosition($scope.updateLocation, $scope.errorHandler, options);
-             
-         }
-         $scope.getCurrentLocation = function (){
-            
-            if($window.navigator.geolocation){
-               var options = {enableHighAccuracy: true
-               	};
-               geoLoc = navigator.geolocation;
-
-               geoLoc.getCurrentPosition($scope.showLocation, $scope.errorHandler, options);
-             
-            } else {
-               alert("Sorry, browser does not support geolocation!");
-            }
-         }
-         $scope.getCurrentLocation();
-         
-         $scope.goToLoc = function (){
-				Map.map.panTo($scope.pos);
-				}		
-		$scope.goToCent = function (){
-				Map.map.panTo($scope.cdac);
-			}
-		
-		});
-		
-
-	app.service('Map', function() {
-    
-    this.init = function(cent) {
-        var options = {
-            center: cent,
-            zoom: 19,
-            disableDefaultUI: false    
-        }
-        this.map = new google.maps.Map(
-            document.getElementById("map"), options
-        );
-       
-    }
-      this.addMarkers = function(pos) {
-        //if(this.marker) this.marker.setMap(null); // this will remove previous marker
-        
-        this.userMarker = new google.maps.Marker({
-            map: this.map,
-            position: pos,
-            icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
-            title: 'Your location',
-            animation: google.maps.Animation.DROP
-        });
-    //     var infowindow = new google.maps.InfoWindow({
-    // 	content: "<span style='font-size:12px'>Your Location</span>"
-  		// });
-    //     infowindow.open(this.map, this.userMarker)
-        }
-       this.addFence = function(){
-       	var tl = new google.maps.LatLng(26.788336, 75.827062);
-  		var tr = new google.maps.LatLng(26.788336, 75.827437);
-  		var br = new google.maps.LatLng(26.788134, 75.827437);
-  		var bl = new google.maps.LatLng(26.788134, 75.827062);
-
-  		var cdac = new google.maps.Polygon({
-    	path: [tl, tr, br, bl],
-    	strokeColor: "#ff0000",
-   		strokeOpacity: 0.8,
-    	strokeWeight: 2,
-    	fillColor: "#ff0000",
-    	fillOpacity: 0.4,
-    	title: 'cdac'
-  		});
-  		cdac.setMap(this.map);
-  		var infowindowCdac = new google.maps.InfoWindow({
-    	content: "<span style='font-size:12px'>Reach here for <br>attendance</span>",
-    	position: {lat: 26.788298, lng:  75.827143}
-  		});
-        infowindowCdac.open(this.map)
-        }
-    
-});
-
-	</script>
- <script async src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAd1xMYT1bt99qtFWQEzXiRBvORDWHgPtk'></script>
+<script async src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAd1xMYT1bt99qtFWQEzXiRBvORDWHgPtk'></script>
 </body>
 </html>
