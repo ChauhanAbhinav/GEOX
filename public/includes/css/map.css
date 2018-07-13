@@ -1,0 +1,53 @@
+.map-overlay{
+background-color: white;
+border: 2px solid white;
+box-shadow: rgba(0, 0, 0, 0.298) 0px 1px 4px -1px;
+cursor: pointer;
+border-radius: 2px;
+padding: 3px;
+z-index: 9999;
+position: absolute;
+}
+.my-location{
+bottom: 89px;
+right: 11px;
+}
+.my-location-icon{
+height:18px;
+width:18px;
+background-image: url('/includes/img/myloc.png');
+background-position: fixed;
+opacity: 0.6;
+}
+.centre-location{
+bottom: 118px;
+right: 11px;
+}
+.centre-location-icon{
+height:18px;
+width:18px;
+background-image: url('/includes/img/centre.png');
+background-position: fixed;
+opacity: 0.6;
+}
+.lat-lng{
+top: 11px;
+left: 11px;
+padding: 0px;
+}
+.lat-lng-text{
+height:20px;
+width:110px;
+font-size: 9px;
+position: relative;
+font-weight: 500;
+color: #888888;
+}
+.lat{
+position: absolute;
+left:1px;top: -1px;
+}
+.lng{
+position: absolute;
+left:1px;top: 10px;
+}

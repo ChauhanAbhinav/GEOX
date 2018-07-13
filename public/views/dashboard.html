@@ -1,164 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
-	
-	<style>
-	.userlogout a {
-    color: white;
-    text-decoration: none;
-    display: inline-block;
-    padding: 5px;
-    font-size: 18px;
-    text-transform: uppercase;
-}
-.userlogout a:hover{
-	background:darkgrey;
-	border:1px solid grey;
-	color:#f2f2f2;
-}
-	#map{
-
-    height: 100%;
-    width: 100%;
-	}
-	.mapwrapper {
-    float: left;
-    height: 100%;
-    width: 1149px;
-}
-	.container{
-		height: 100%;
-		font-family: Poppins;
-	}
-	.panel ul {
-    list-style: none;
-    padding: 0px;
-        margin-top: 65px;
-}
-.panel ul li {
-	text-transform: uppercase;
-    font-size: 18px;
-    padding: 12px 20px;
-    text-align: left;
-}
-.panel ul li:hover{
-	background:darkgrey;
-	border:1px solid grey;
-	color:#f2f2f2;
-
-}
-	.logoandheader {
-    margin: 22px auto;
-    display: block;
-}
-		.sidenav{
-			background-color: black;
-			float: left;
-			height: 100%;
-     		width: 200px;
-			text-align: center;
-		}
-		.mapwrapper{
-			
-			
-	    float: left;
-    	height: 100%;
-    	width: 1148px;
-
-		}
-		.geox {
-    color: white;
-    line-height: 39px;
-    vertical-align: super;
-    text-align: center;
-    padding: 10px;
-    font-weight: bolder;
-    font-size: 22px;
-}
-		.user {
-    color: white;
-    /* display: block; */
-    font-size: 18px;
-    padding: 10px;
-}
-		.mapwrapper{
-			overflow:hidden;
-			
-		}
-		.user-name{
-			color: white:;
-
-		}
-		.userlogout{
-			color: white;
-		}
-		.panel{
-			color: white;
-		}
-		body{
-			margin:0px 0px;
-			height: 100%;
-		}
-		html{
-			margin:0px 0px;
-			height: 100%;
-		}
-	</style>
-	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,600,700,900" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.min.js"></script>
+	<title>Dashboard</title>
+	<link href="https://fonts.googleapis.com/css?family=Poppins:300,500,400,600,700,900" rel="stylesheet">
+<style>
+</style>
+	<link rel="stylesheet" type="text/css" href="/includes/css/dashboard.css">
+	<link rel="stylesheet" type="text/css" href="/includes/css/map.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.18/angular-ui-router.min.js"></script>
-    <script type="text/javascript" src="/controllers/geolocCtrl.js"></script>
-    <script type="text/javascript" src="/services/mapService.js"></script>
-    <script type="text/javascript" src="./../mainApp.js"></script>
+    <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAd1xMYT1bt99qtFWQEzXiRBvORDWHgPtk'></script>
+    <script type="text/javascript" src="/services/mapService.js"></script> <!-- loading services -->
+    <script type="text/javascript" src="/controllers/geolocCtrl.js"></script> <!-- loading controllers -->
+    <script type="text/javascript" src="./../mainApp.js"></script> <!-- loading main app -->
 </head>
 <body ng-app="geox" ng-controller="geolocCtrl">
-	<div class="container">
+	<div class="container-fluid">
 		<div class="sidenav" >
-
-			<div class="logopanel">
-			<span class="logoandheader"><img src="/includes/img/logo-32px.png"><span class="geox" >GEOX</span>
-			</span>
-			</div>
-
-				<div class="userpic">
-			<img src="/includes/img/user.png" style="height: 25px;width:25px;">
-				</div>
-
-			<div class="user">
-			<span> user</span>
-			</div>
-
-				
-				<div >
-				<span class="userlogout">
-				<a href ="">User</a> <a href="" >Logout</a>
+		<div class="upper-sidenav">
+			<div>
+				<span class="logo-header"><img src="/includes/img/logo-32px.png"><span class="geox" >GEOX</span>
 				</span>
-				</div>
+			</div>
+
+			<div>
+				<img src="/includes/img/user.png" style="height: 25px;width:25px;">
+			</div>
+
+			<div>
+				<span class="user"> Student</span>
+			</div>
+			<div >
+				<span class="user-logout">
+					<a href ="">Name</a> <a href="">Logout</a>
+				</span>
+			</div>
 			
-				<div class="panel">
+		</div>
+			<div class="panel">
 					<ul>
 					<li>Home</li>
 					<li>Attendance</li>
 					<!-- <li>Register user</li> -->
 					<!-- <li>student detail</li>	 -->
 					<li>Profile</li>
-					<li ng-click="goToLoc()">Go to your loc</li>
-					<li ng-click="goToCent()">Go to center Loc</li>
 					<li>About GEOX</li>	
 						</ul>
-				</div>
-				
-
 			</div>
+		</div>		
 
-		<div class="mapwrapper">
- <span style="font-size: 12px;position: absolute;z-index: 9999;left:50%;background-color: #ededed">lat: <span ng-bind="pos.lat"></span><br> long: <span ng-bind="pos.lng"></span></span>
+<div class="map-wrapper">
+
+ <div class="map-overlay lat-lng"><div class="lat-lng-text"><span class="lat">lat:{{pos.lat}}</span><span class="lng">lng:{{pos.lng}}</span></div></div>
+ <div title="Centre Location" class="map-overlay centre-location" ng-click="goToCent()"><div class="centre-location-icon"></div></div>
+ <div title="Your Location" class="map-overlay my-location" ng-click="goToLoc()"><div class="my-location-icon"></div></div>
 				
  <div id="map"></div>
-	</div>
 </div>
-<script async src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAd1xMYT1bt99qtFWQEzXiRBvORDWHgPtk'></script>
+</div>
 </body>
 </html>
