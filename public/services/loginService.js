@@ -5,8 +5,8 @@ angular.module('loginService',[])
 			sendStudent : function(data){
 				return $http.post('/student-login',data)
 				.then(function(response){
-						return response.data;
-					});
+					return response.data;
+				});
 				},
 				sendAdmin : function(data){
 				return $http.post('/admin-login',data)

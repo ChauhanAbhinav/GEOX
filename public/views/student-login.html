@@ -17,6 +17,6 @@
     <span ng-show="myForm.password.$invalid && (myForm.password.$touched || submitted)" class="error">The password is required</span>
   </div>
   
-  <button type="submit" name="student-submit" class="login-button" ng-click="student()">Login</button>
-  <div class="sign-up">Not Sign Up?&nbsp;<a class="sign-up-link" href="/views/sign-up.html">Click here</a></div>
+  <button type="submit" name="student-submit" class="form-button login-button" ng-click="student()">Login</button>
+  <div class="login-sign-up-text">Not Sign Up?&nbsp;<a class="login-sign-up-link" ng-click="toSignup()">Click here</a></div>
 </form>
