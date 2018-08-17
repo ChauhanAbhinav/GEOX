@@ -15,9 +15,9 @@ right: 11px;
 .my-location-icon{
 height:18px;
 width:18px;
-background-image: url('/includes/img/myloc.png');
+background-image: url('./../img/myloc.png');
 background-position: fixed;
-opacity: 0.6;
+opacity: 0.7;
 }
 .centre-location{
 bottom: 118px;
@@ -26,9 +26,9 @@ right: 11px;
 .centre-location-icon{
 height:18px;
 width:18px;
-background-image: url('/includes/img/centre.png');
+background-image: url('./../img/centre.png');
 background-position: fixed;
-opacity: 0.6;
+opacity: 0.7;
 }
 .lat-lng{
 top: 11px;
@@ -41,7 +41,7 @@ width:110px;
 font-size: 9px;
 position: relative;
 font-weight: 500;
-color: #888888;
+color: #666666;
 }
 .lat{
 position: absolute;

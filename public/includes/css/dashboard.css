@@ -1,39 +1,27 @@
-body{
-margin:0px 0px;
-height: 100%;
-}
-html{
-margin:0px 0px;
-height: 100%;
-}
-.container-fluid{
+.container-dashboard{
 height: 100%;
 font-family: Poppins;
+padding: 0px;
+position: relative;
 }
-.map-wrapper {
+.ui-wrapper {
 position: relative;
 float: left;
 height: 100%;
-width: 82%;
+width: calc(100% - 220px);
 overflow:hidden;
 }
 .sidenav{
+position: relative;
 background-color: black;
 float: left;
 height: 100%;
-width: 18%;
+overflow: auto;
+width: 220px;
 text-align: center;
 font-family: 'poppins', serif;
 }
-@media screen and (max-width: 1024px) {
-    .map-wrapper{
-    	width: calc(100% - 180px);
-    }
-    .sidenav{
-    	width: 180px;
-    }
-    
-}
+
 .upper-sidenav{
 	padding-bottom: 20px;
 	border-bottom: 1px solid #9c9c9c;
@@ -98,5 +86,48 @@ font-size: 22px;
 .panel{
 color: white;
 }
-
+.close-nav{
+	display: none;
+	position: absolute;
+	right:5px;top: 3px;
+	cursor: pointer;
+	color: white;
+	font-weight: 900;
+}
+.open-nav{
+	position: absolute;
+	left:12px;top:40px;
+	font-weight: 900;
+	display:none;
+	z-index: 9999;
+	cursor: pointer;
+	background-color: black;
+	color: white;
+	padding-right: 5px;
+	padding-left: 5px;
+}
+.timer{
+	color: white;
+}
+@media screen and (max-width: 1024px) {
+    .ui-wrapper{
+    	width: calc(100% - 180px);
+    }
+    .sidenav{
+    	width: 180px;
+    }
+    
+}
+@media screen and (max-width: 480px) {
+    .close-nav{
+    	display: inline;
+    }
+    .ui-wrapper{
+    	width: calc(100% - 140px);
+    }
+    .sidenav{
+    	width: 140px;
+    }
+    
+}
 	

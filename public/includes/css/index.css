@@ -1,0 +1,37 @@
+body{
+margin:0px 0px;
+height: 100%;
+width:100%;
+}
+html{
+margin:0px 0px;
+height: 100%;
+width:100%;
+}
+.container-fluid{
+height: calc(100% - 24px); !important;
+padding: 0px;
+border:0px solid black;
+}
+.main-nav{
+	background: white;
+	position: static;
+	/*height: 13px;*/
+	z-index: 9;
+	left: 0;right: 0;top: 0;
+}
+a:link{
+	color: #00AD5E;
+	text-decoration: none;
+}
+a:active{
+	color: #00AD5E;
+}
+a:visited{
+	color: #00AD5E;
+	text-decoration: none;
+}
+a:hover{
+	color: #00AD5E;
+	text-decoration: none;
+}
