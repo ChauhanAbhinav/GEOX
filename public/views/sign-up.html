@@ -1,29 +1,14 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <title>register page</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/includes/css/register.css">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,600,700,900" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.18/angular-ui-router.min.js"></script>
-    
-    <script type="text/javascript" src="/directives/matchPassDir.js"></script><!-- loading directives -->
-    <script type="text/javascript" src="/controllers/signUpCtrl.js"></script><!-- loading controllers -->
-    <script type="text/javascript" src="/services/signUpService.js"></script><!-- loading services -->
-    <script type="text/javascript" src="../registerApp.js"></script> <!-- loading main app -->
-</head>
-<body   ng-app="registerApp" ng-controller="SignUpController">
-    <div class="row">
-        <div class="col-xs-6 col-xs-offset-3 form-wrapper">
+﻿<div class="signup-wrapper">
+        <div class="signup-form-wrapper">
+        
 
             <!-- PAGE HEADER -->
-           <div class="form-head">
-                <div class="logo-wrapper">
-                    <img class="logo" src="/includes/img/logo-32px.png">
-                    <span class="geox">GEOX</span>
+           <div class="signup-form-head">
+                <div class="signup-logo-wrapper">
+                    <img class="form-logo" src="./../includes/img/logo-32px.png">
+                    <span class="form-geox signup-geox">GEOX</span>
                 </div>
-                <span class="sign-up">Sign Up</span>
+                <span class="sign-up-text">Sign Up</span>
             </div>
 
            <form  class="form" name="userForm" ng-submit="submitForm()" novalidate>
@@ -129,28 +114,10 @@
                     <p ng-show="userForm.terms.$error.required && (userForm.terms.$touched || submitted)" class="error">Accept terms & conditions.</p>
                 </div>
 
-                <button type="submit" class="sign-up-button">Register</button>
+                <button type="submit" class="form-button signup-button">Register</button>
+
+                <div class="login-sign-up-text">For Login&nbsp;<a class="login-sign-up-link" ng-click="toLogin()">Click here</a></div>
             </form>
         </div>
-       
-    </div>
-     <div id="map"></div>   
-</body>
-</html>
-<script>
-function initMap() {
- var pos = {lat: 26.7880, lng: 75.8275};
-  var map = new google.maps.Map(
-      document.getElementById('map'), {
-        zoom: 15, 
-        center: pos,
-        styles : [{"elementType":"geometry","stylers":[{"color":"#212121"}]},{"elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"elementType":"labels.text.fill","stylers":[{"color":"#757575"}]},{"elementType":"labels.text.stroke","stylers":[{"color":"#212121"}]},{"featureType":"administrative","elementType":"geometry","stylers":[{"color":"#757575"}]},{"featureType":"administrative.country","elementType":"labels.text.fill","stylers":[{"color":"#9e9e9e"}]},{"featureType":"administrative.land_parcel","stylers":[{"visibility":"off"}]},{"featureType":"administrative.locality","elementType":"labels.text.fill","stylers":[{"color":"#bdbdbd"}]},{"featureType":"poi","elementType":"labels.text.fill","stylers":[{"color":"#757575"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#181818"}]},{"featureType":"poi.park","elementType":"labels.text.fill","stylers":[{"color":"#616161"}]},{"featureType":"poi.park","elementType":"labels.text.stroke","stylers":[{"color":"#1b1b1b"}]},{"featureType":"road","elementType":"geometry.fill","stylers":[{"color":"#2c2c2c"}]},{"featureType":"road","elementType":"labels.text.fill","stylers":[{"color":"#8a8a8a"}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#373737"}]},{"featureType":"road.highway","elementType":"geometry","stylers":[{"color":"#3c3c3c"}]},{"featureType":"road.highway.controlled_access","elementType":"geometry","stylers":[{"color":"#4e4e4e"}]},{"featureType":"road.local","elementType":"labels.text.fill","stylers":[{"color":"#616161"}]},{"featureType":"transit","elementType":"labels.text.fill","stylers":[{"color":"#757575"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#000000"}]},{"featureType":"water","elementType":"labels.text.fill","stylers":[{"color":"#3d3d3d"}]}],
-        disableDefaultUI: true  
-
-      });
-}
-    </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7aEXsY5jClGln7NJY0I_ucE4F8bCUIsk&callback=initMap">
-    </script>
-
-
+        <div id="map" class="signup-map"></div>   
+</div>
