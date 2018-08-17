@@ -1,4 +1,12 @@
 angular.module('geox', [
-    'geolocCtrl',
-    'mapService'
-]);
+     'mainRoutes',
+	 'loginService',
+	 'signUpService',
+	 'studentService',
+	 'mapService',
+     'matchPassDir',
+	 'loginCtrl',
+	 'signUpCtrl',
+     'dashboardCtrl',
+     'geolocCtrl',
+    ]);
