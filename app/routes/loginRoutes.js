@@ -1,10 +1,8 @@
-module.exports = function(app,db){
+module.exports = function(app,db,path){
 //STUDENT LOGIN REQUEST
 	app.post('/student-login', function (request, response) {
-    console.log("student login request accepted");
-    
     var user = request.body;
-    institute=db.db('geox').collection('admin');
+   	institute=db.db('geox').collection('admin');
    	institute.findOne({cid: user.cid},function (err,res){
 		if(err) throw err;
 		if(res)
@@ -15,16 +13,18 @@ module.exports = function(app,db){
 					if(res)
 					{
 						var log="Student Login Successful";
-						response.redirect("/views/dashboard.html");
-						console.log(log);	
-						//response.send(log);
+						var sess = request.session;
+						sess.student = { username: user.username, cid: user.cid};
+						console.log(log);
+						response.send(sess.student);	
+						response.end();
 						}
 					else
 					{
 						var log="Username or Password Incorrect";
-						
 						console.log(log);
 						response.send(log);
+						response.end();
 					}
 
 				}); 
@@ -33,6 +33,7 @@ module.exports = function(app,db){
 			var log="Wrong Center Id";
 			console.log(log);
 			response.send(log);
+			response.end();
 			}
 		});
 

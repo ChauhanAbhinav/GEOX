@@ -15,9 +15,9 @@ module.exports = function (app,db,path) {
 				{	student=db.db('geox').collection(user.cid + '_students');
 					student.insert(user,function(err,res){
 					if (err) { throw err;}
-					
+					request.session.student = { username: user.username, cid: user.cid};
 					log= "Sign up completed";
-					response.redirect("/views/dashboard.html");
+					response.send(request.session.student);
 					console.log(log);
 					});
 				
