@@ -1,39 +1,29 @@
 angular.module('geolocCtrl',[])
-.controller('geolocCtrl',function($http, $window, $scope, Map){
+.controller('geolocCtrl',function($scope, $rootScope, $http, $window,  Map){
 			$scope.pos = {};
-			$scope.cdac = {lat: 26.788286, lng: 75.827287}; 
-			//$scope.pos1={lat: 26.788336, lng: 75.827437};
- 		   	
-		$scope.showLocation = function (position) {
+      $scope.cdac = {lat: 26.788286, lng: 75.827287};
+      $scope.test = {lat: 26.805644, lng: 75.798769};//temp loc
+      
+		 $scope.showLocation = function (position) {
 			$scope.pos.lat=position.coords.latitude;
  		   	$scope.pos.lng=position.coords.longitude;
  		   	$scope.$apply(); //refresh the binding
- 		   	Map.init($scope.cdac); //initilize the map at cdac
- 		   	Map.addMarkers($scope.pos);
- 		   	Map.addFence();
- 		   	$scope.getLocationUpdate();
+ 		  	Map.addMarkers($scope.test);
+        console.log("location found");
  		   	$scope.validateLocation();
+        $scope.getLocationUpdate();
  		 }
-         $scope.updateLocation = function (position){
-         	$scope.pos.lat=position.coords.latitude;
+        $scope.updateLocation = function (position){
+        $scope.pos.lat=position.coords.latitude;
  		   	$scope.pos.lng=position.coords.longitude;
  		   	//alert("Latitude : " + $scope.pos.lat + " Longitude: " + $scope.pos.lng);
  		   	$scope.$apply();
- 		   	Map.userMarker.setPosition($scope.pos);
+        console.log("location updated");
+ 		   	Map.userMarker.setPosition($scope.test);
  		  	$scope.validateLocation(); 
  		}
- 		$scope.validateLocation = function (){
- 			if(($scope.pos.lat>=26.788134 && $scope.pos.lat<= 26.788336)&&($scope.pos.lng>=75.827062 && $scope.pos.lng<= 75.827437))
- 			{
- 				alert('Attendance Successful');
- 			}
- 			else
- 			{
-
- 			}
- 		}
-         $scope.errorHandler = function (error) {
-           
+ 		
+    $scope.errorHandler = function (error) {
             switch(error.code)
     		{
         	case error.TIMEOUT:
@@ -49,33 +39,54 @@ angular.module('geolocCtrl',[])
             alert("An unknown error occurred.");
     		}
          }
-        $scope.getLocationUpdate = function (){
-    			        
+
+          $scope.getCurrentLocation = function (){
+            if($window.navigator.geolocation){
+               var options = {enableHighAccuracy: true
+              };
+                geoLoc = navigator.geolocation;
+                geoLoc.getCurrentPosition($scope.showLocation, $scope.errorHandler, options);
+                console.log(" getCurrentLocation function invoked");             
+            } else {
+               alert("Sorry, browser does not support geolocation!");
+            }
+         }
+     $scope.getLocationUpdate = function (){
+    			     console.log(" getLocationUpdate function invoked")
                var options = {enableHighAccuracy: true};
                geoLoc = navigator.geolocation;
                wid = geoLoc.watchPosition($scope.updateLocation, $scope.errorHandler, options);
              
          }
-         $scope.getCurrentLocation = function (){
-            
-            if($window.navigator.geolocation){
-               var options = {enableHighAccuracy: true
-               	};
-               geoLoc = navigator.geolocation;
-
-               geoLoc.getCurrentPosition($scope.showLocation, $scope.errorHandler, options);
-             
-            } else {
-               alert("Sorry, browser does not support geolocation!");
+        $scope.validateLocation = function (){
+      if(!$rootScope.attendance)
+          if(($scope.test.lat>=26.805413 && $scope.test.lat<= 26.805854)&&($scope.test.lng>=75.798464 && $scope.test.lng<= 75.799156))
+          //if(($scope.pos.lat>=26.788134 && $scope.pos.lat<= 26.788336)&&($scope.pos.lng>=75.827062 && $scope.pos.lng<= 75.827437))
+            {
+                 
+                 $rootScope.attendance = true;
+                 alert('Attendance Successful');
             }
-         }
-         $scope.getCurrentLocation();
-         
-         $scope.goToLoc = function (){
+          else
+            {
+
+            }
+    }
+  
+  $rootScope.checkMap = function()
+  {
+   if($rootScope.student)
+   {  Map.init($scope.test); //initilize the map at cdac
+      Map.addFence();  
+      $scope.getCurrentLocation();
+  }
+  };
+  $rootScope.checkMap();
+    
+     $scope.goToLoc = function (){
 				Map.map.panTo($scope.pos);
 				}		
 		$scope.goToCent = function (){
-				Map.map.panTo($scope.cdac);
+				Map.map.panTo($scope.test);
 			}
-		
 		});
