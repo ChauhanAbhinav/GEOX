@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Welcome</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">	
+	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,400,600,700,800,900" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="./../includes/css/index.css">
+	<link rel="stylesheet" type="text/css" href="./../includes/css/login.css">
+	<link rel="stylesheet" type="text/css" href="./../includes/css/register.css">
+    <link rel="stylesheet" type="text/css" href="./../includes/css/dashboard.css">
+    <link rel="stylesheet" type="text/css" href="./../includes/css/map.css">
+	
+	
+	<link rel="stylesheet" type="text/css" href="./../includes/css/map.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.18/angular-ui-router.min.js"></script>
+    <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyD7aEXsY5jClGln7NJY0I_ucE4F8bCUIsk'></script>
+    
+    <!-- loading routes -->
+    <script type="text/javascript" src="./../routes/mainRoutes.js"></script>
+    <!-- loading main controller -->
+    <script type="text/javascript" src="./../controllers/dashboardCtrl.js"></script>
+    <script type="text/javascript" src="./../controllers/geolocCtrl.js"></script> 
+    <script type="text/javascript" src="./../controllers/signUpCtrl.js"></script>
+    <script type="text/javascript" src="./../controllers/loginCtrl.js"></script>
+    
+    <!-- loading services --> 
+    <script type="text/javascript" src="./../services/mapService.js"></script>
+    <script type="text/javascript" src="./../services/loginService.js"></script>
+    <script type="text/javascript" src="./../services/signUpService.js"></script>
+    <script type="text/javascript" src="./../services/studentService.js"></script>
+    
+    <!-- loading directives -->
+    <script type="text/javascript" src="./../directives/matchPassDir.js"></script>
+     
+    <!-- loading main app -->
+    
+    <script type="text/javascript" src="./../mainApp.js"></script> 
+    
+</head>
+<body ng-app="geox">
+	<div class="main-nav">
+		<a ui-sref="login">login</a>
+		<a ui-sref="signup">signup</a>
+		<a ui-sref="dashboard">dashboard</a>
+	</div>
+	<!-- main ui view -->
+	<div class="container-fluid" ui-view>
+	</div>
+	<!-- main ui view end -->
+</body>
+</html>
