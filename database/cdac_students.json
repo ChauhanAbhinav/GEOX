@@ -1,0 +1,10 @@
+{"_id":{"$oid":"5b41bcecb5e96b02fc7bcc25"},"cid":"cdac","enroll":542,"name":"Abhinav Chauhan","fname":"xyz","email":"abhinavchauhan25493@gmail.com","phone":8.387827918e+09,"dob":"1996-04-24T18:30:00.000Z","tech":"AngularJS and NodeJS","batch":"4 PM to 6 PM","username":"abhinav.96","password":"abhinav"}
+{"_id":{"$oid":"5b420eb93445600f889744b0"},"name":"Ajay Sharma","fname":"xyz","cid":"cdac","enroll":530,"email":"ajay@gmail.com","dob":"1997-01-14T18:30:00.000Z","tech":"AngularJS and NodeJS","batch":"4 PM to 6 PM","username":"ajay","password":"ajay","phone":9.999999999e+09}
+{"_id":{"$oid":"5b4214653aad561374dad6fd"},"name":"Sahil Mathur","fname":"XYZ","enroll":520,"email":"sahil@gmail.com","dob":"2018-06-30T18:30:00.000Z","tech":"AngularJS and NodeJS","batch":"4 PM to 6 PM","username":"sahil","password":"sahil","cid":"cdac","phone":9.999999999e+09}
+{"_id":{"$oid":"5b42378ca4712f1d3cd806f7"},"name":"xyz","fname":"xyz","cid":"cdac","enroll":500,"email":"xyz@xyz","phone":7.777777777e+09,"dob":"2018-07-27T18:30:00.000Z","tech":"Internet of things","batch":"10 AM to 12 PM","username":"xyz","password":"xyz"}
+{"_id":{"$oid":"5b7104d1b6ec440e90c9a468"},"name":"a","fname":"a","cid":"cdac","enroll":520,"email":"a@a","phone":8.888888888e+09,"dob":"2018-08-03T18:30:00.000Z","tech":"AngularJS and NodeJS","batch":"10 AM to 12 PM","username":"abhinav","password":"abhinav"}
+{"_id":{"$oid":"5b7104fdb6ec440e90c9a469"},"name":"a","fname":"a","cid":"cdac","enroll":520,"email":"a@a","phone":8.888888888e+09,"dob":"2018-08-03T18:30:00.000Z","tech":"AngularJS and NodeJS","batch":"10 AM to 12 PM","username":"abhinav","password":"abhinav"}
+{"_id":{"$oid":"5b72cd4328609718805e1ee6"},"cid":"cdac","enroll":520}
+{"_id":{"$oid":"5b72d6f7cfcb651b90ec27d8"},"cid":"cdac","enroll":520}
+{"_id":{"$oid":"5b72d7a7c5466113c0df5252"},"cid":"cdac","enroll":520}
+{"_id":{"$oid":"5b72d8b806d6f317d8768c58"},"name":"sahil","fname":"skajs","cid":"cdac","enroll":530,"email":"a@a","phone":9.999999999e+09,"dob":"2018-08-16T18:30:00.000Z","tech":"Hybrid Framework","batch":"4 PM to 6 PM","username":"sahil","password":"sahil"}
