@@ -11,6 +11,8 @@
 	<link rel="stylesheet" type="text/css" href="./../includes/css/register.css">
     <link rel="stylesheet" type="text/css" href="./../includes/css/dashboard.css">
     <link rel="stylesheet" type="text/css" href="./../includes/css/map.css">
+    <link rel="stylesheet" type="text/css" href="./../includes/css/attendance.css">
+    <link rel="stylesheet" type="text/css" href="./../includes/css/profile.css">
 	
 	
 	<link rel="stylesheet" type="text/css" href="./../includes/css/map.css">
@@ -25,7 +27,8 @@
     <script type="text/javascript" src="./../controllers/geolocCtrl.js"></script> 
     <script type="text/javascript" src="./../controllers/signUpCtrl.js"></script>
     <script type="text/javascript" src="./../controllers/loginCtrl.js"></script>
-    
+    <script type="text/javascript" src="./../controllers/attendanceCtrl.js"></script>
+    <script type="text/javascript" src="./../controllers/profileCtrl.js"></script>
     <!-- loading services --> 
     <script type="text/javascript" src="./../services/mapService.js"></script>
     <script type="text/javascript" src="./../services/loginService.js"></script>
@@ -42,9 +45,10 @@
 </head>
 <body ng-app="geox">
 	<div class="main-nav">
-		<a ui-sref="login">login</a>
-		<a ui-sref="signup">signup</a>
-		<a ui-sref="dashboard">dashboard</a>
+		<a ui-sref="dashboard">Dashboard</a>
+		<a ui-sref="login" style="padding-left: auto;">Login</a>
+		<a ui-sref="signup" style="padding-left: auto;">Signup</a>
+		
 	</div>
 	<!-- main ui view -->
 	<div class="container-fluid" ui-view>

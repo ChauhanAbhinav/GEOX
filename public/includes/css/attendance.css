@@ -1,0 +1,9 @@
+.attendance-panel{
+height: 100%;
+overflow: scroll;
+text-align: center;
+}
+.attendance-table{
+	margin:10px auto;
+}
+

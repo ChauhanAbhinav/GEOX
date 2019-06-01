@@ -6,8 +6,10 @@ $scope.authStudent = function(){
             if(data!="NULL")
             {
             $rootScope.student = data;
-            $rootScope.checkTimer();
+            //$rootScope.checkTimer();
             $rootScope.checkMap();
+            if(!$rootScope.checkAttendanceIntervalFlag)
+            $rootScope.checkAttendanceInterval();
             console.log("student auth is successful");
             }
             else
@@ -21,7 +23,9 @@ $scope.authStudent = function(){
  });
 }
 $scope.authStudent();
+
 $rootScope.startTimer = function(){
+ 
       $rootScope.timer = {};
       $rootScope.timer.count = 0;
       $rootScope.timerFlag = true;
@@ -30,7 +34,27 @@ $rootScope.startTimer = function(){
             $rootScope.timer.hr = Math.floor($rootScope.timer.count/3600);
             $rootScope.timer.min = Math.floor(($rootScope.timer.count%3600)/60);
             $rootScope.timer.sec = Math.floor(($rootScope.timer.count%3600)%60);
-            $rootScope.$apply();},1000);
+            $rootScope.$apply();
+            if(!$rootScope.attendance)
+            if($rootScope.timer.count >= 10)
+                  {     if($rootScope.validateLocation() == "valid")
+                        {     studentService.tickAttendance()
+                              .then(function(data){
+                              $rootScope.attendance = true;
+                              clearInterval($rootScope.attendanceInterval);
+                              alert('Attendance Successful'); 
+                              },function(err){
+                              alert('Attendance Not Successful');
+                              });
+                        }
+                         else
+                              {  if(!$rootScope.notificationFlag) {
+                                 alert("Attendance not successful, you had not stayed in parameter for atleast 1 hr"); $rootScope.notificationFlag = true;
+                                    }
+                              }
+                  }
+           
+      },1000);
     }
 $rootScope.checkTimer = function(){
    if($rootScope.student)
@@ -40,13 +64,33 @@ $rootScope.checkTimer = function(){
    }
   };
  
+ $rootScope.checkAttendanceInterval = function(){
+      //alert("checkAttendanceInterval started");
+  $rootScope.attendanceInterval = setInterval(function(){
+      if(!$rootScope.notificationInfoFlag) {alert("Stay in parameter for atleast 1 hr for successful attendance"); $rootScope.notificationInfoFlag = true;}
+            if($rootScope.validateLocation() == "valid")
+            {
+                 $rootScope.checkTimer();
+            }
+            else
+            {}
+      },1000); 
+  $rootScope.checkAttendanceIntervalFlag = true;   
+ }
 $scope.logoutStudent = function(){
       studentService.logoutStudent()
       .then(function(data){
-            $rootScope.student = null;
-            $rootScope.timerFlag = false;
-            clearInterval($rootScope.timer.interval);
+            clearInterval($rootScope.attendanceInterval);
+            if($rootScope.timerFlag) {
+               clearInterval($rootScope.timer.interval);
+               $rootScope.timerFlag = false;
+            }
+            $rootScope.checkAttendanceIntervalFlag = false;
+            $rootScope.notificationInfoFlag = false;
+            $rootScope.notificationFlag = false;
+            $rootScope.attendance = false;
             $rootScope.timer = {};
+            $rootScope.student = null;
             $state.go("login.student");
             console.log("logout successful");
       },function(err){
@@ -54,6 +98,7 @@ $scope.logoutStudent = function(){
             console.log("logout unsuccessful");
       });
 }
+
 $scope.closeNav = function (){
       var sidenav = document.getElementById("sidenav");
       var uiWrapper = document.getElementById("ui-wrapper");
@@ -71,7 +116,5 @@ $scope.openNav = function (){
       opennav.style.display = "none";
      
 }
-
-
 
 });

@@ -1,26 +1,31 @@
 angular.module('geolocCtrl',[])
-.controller('geolocCtrl',function($scope, $rootScope, $http, $window,  Map){
-			$scope.pos = {};
-      $scope.cdac = {lat: 26.788286, lng: 75.827287};
-      $scope.test = {lat: 26.805644, lng: 75.798769};//temp loc
+.controller('geolocCtrl',function($scope, $rootScope, $http, $window, Map, studentService){
+			$scope.center = {lat: 26.788286, lng: 75.827287};//center loc
+      $scope.test = {lat: 26.805644, lng: 75.798769};//temp user loc
       
+
 		 $scope.showLocation = function (position) {
-			$scope.pos.lat=position.coords.latitude;
- 		   	$scope.pos.lng=position.coords.longitude;
- 		   	$scope.$apply(); //refresh the binding
- 		  	Map.addMarkers($scope.test);
+			  $rootScope.pos = {};
+        $rootScope.pos.lat=position.coords.latitude;
+ 		   	$rootScope.pos.lng=position.coords.longitude;
+ 		   	$rootScope.$apply(); //refresh the binding
+ 		  	if(Map.userMarker)
+           Map.userMarker.setPosition($rootScope.pos);
+        else
+           Map.addMarkers($rootScope.pos, google.maps.Animation.DROP);
         console.log("location found");
- 		   	$scope.validateLocation();
+ 		   	//validateLocation();
         $scope.getLocationUpdate();
+
  		 }
         $scope.updateLocation = function (position){
-        $scope.pos.lat=position.coords.latitude;
- 		   	$scope.pos.lng=position.coords.longitude;
+        $rootScope.pos.lat=position.coords.latitude;
+ 		   	$rootScope.pos.lng=position.coords.longitude;
  		   	//alert("Latitude : " + $scope.pos.lat + " Longitude: " + $scope.pos.lng);
- 		   	$scope.$apply();
+ 		   	$rootScope.$apply();
         console.log("location updated");
- 		   	Map.userMarker.setPosition($scope.test);
- 		  	$scope.validateLocation(); 
+ 		   	Map.userMarker.setPosition($rootScope.pos);
+        //validateLocation();
  		}
  		
     $scope.errorHandler = function (error) {
@@ -46,6 +51,8 @@ angular.module('geolocCtrl',[])
               };
                 geoLoc = navigator.geolocation;
                 geoLoc.getCurrentPosition($scope.showLocation, $scope.errorHandler, options);
+                if($rootScope.pos) 
+                 Map.addMarkers($rootScope.pos);
                 console.log(" getCurrentLocation function invoked");             
             } else {
                alert("Sorry, browser does not support geolocation!");
@@ -58,25 +65,24 @@ angular.module('geolocCtrl',[])
                wid = geoLoc.watchPosition($scope.updateLocation, $scope.errorHandler, options);
              
          }
-        $scope.validateLocation = function (){
-      if(!$rootScope.attendance)
-          if(($scope.test.lat>=26.805413 && $scope.test.lat<= 26.805854)&&($scope.test.lng>=75.798464 && $scope.test.lng<= 75.799156))
-          //if(($scope.pos.lat>=26.788134 && $scope.pos.lat<= 26.788336)&&($scope.pos.lng>=75.827062 && $scope.pos.lng<= 75.827437))
+        $rootScope.validateLocation = function (){
+          //alert("validateLocation invoked");
+      if(1)
+          //if(($rootScope.pos.lat>=26.805413 && $rootScope.pos.lat<= 26.805854)&&($rootScope.pos.lng>=75.798464 && $rootScope.pos.lng<= 75.799156)) //temp loc checking
+          if(($rootScope.pos.lat>=26.788134 && $rootScope.pos.lat<= 26.788336)&&($rootScope.pos.lng>=75.827062 && $rootScope.pos.lng<= 75.827437))
             {
-                 
-                 $rootScope.attendance = true;
-                 alert('Attendance Successful');
+                return "valid";
             }
-          else
+           else
             {
-
+                  return "notValid";
             }
     }
   
   $rootScope.checkMap = function()
   {
    if($rootScope.student)
-   {  Map.init($scope.test); //initilize the map at cdac
+   {  Map.init($scope.center); //initilize the map at cdac
       Map.addFence();  
       $scope.getCurrentLocation();
   }
@@ -84,9 +90,9 @@ angular.module('geolocCtrl',[])
   $rootScope.checkMap();
     
      $scope.goToLoc = function (){
-				Map.map.panTo($scope.pos);
+				Map.map.panTo($rootScope.pos);
 				}		
 		$scope.goToCent = function (){
-				Map.map.panTo($scope.test);
+				Map.map.panTo($scope.center);
 			}
 		});

@@ -1,0 +1,8 @@
+<div class="attendance-panel">
+<h4>{{student.username}}</h4>
+<h6>Attendance List</h6>
+<table class="table attendance-table">
+	<tr><th>Date</th><th>Success</th></tr>
+	<tr ng-repeat="x in attendList"><td>{{x.date.dd}}/{{x.date.mm}}/{{x.date.yyyy}}</td><td>{{x.attendance}}</td></tr>
+</table>
+</div>

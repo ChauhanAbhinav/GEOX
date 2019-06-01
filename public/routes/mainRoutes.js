@@ -38,12 +38,12 @@ $stateProvider
 .state('dashboard.attendance',{
 	url: '/view-attendance',
 	templateUrl: '/views/attendance.html',
-	// controller: "attainCtrl" 
+	 controller: "attendanceCtrl" 
 })
 .state('dashboard.profile',{
 	url: '/profile',
 	templateUrl: '/views/profile.html',
-	//controller: "profileCtrl" 
+	controller: "profileCtrl" 
 })
 .state('dashboard.about',{
 	url: '/about-geox',

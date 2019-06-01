@@ -1,0 +1,64 @@
+h3.ng-scope {
+    /* margin: auto auto; */
+    /* display: block; */
+    text-align: center;
+}
+form {
+    /* text-align: left; */
+    margin: auto;
+    width: 375px;
+}
+label {
+    padding: 10px;
+    color: #00ad5e;
+    width: 165px;
+}
+
+input[type="text"] {
+    border: none;
+    border-bottom: 1px solid #c3bfbf;
+    /* border-radius: 5px; */
+    padding-left: 5px;
+    color: #585757;
+    
+}
+.profile {
+    width: 33%;
+    margin: 0;
+    float: left;
+}
+.image img {
+    height: 215px;
+}
+.image{
+text-align:center;}
+
+.name {
+    text-align: center;
+    font-weight: 800;
+    color: #00ad5e;
+margin:0px;
+padding:0px;
+}
+
+.aboutgeoxdiv p {
+    padding: 38px 101px;
+    word-spacing: 4px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: #00ad5e;
+}
+.aboutgeoxdiv h1{
+    text-align:center;
+}
+hr.ng-scope {
+    width: 80%;
+    color: #3e3e3e;
+    box-shadow: 5px 5px aliceblue;
+}
+.ourteam{
+
+    font-size: 32px;
+    margin-left: 108px;
+
+}

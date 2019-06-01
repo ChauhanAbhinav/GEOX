@@ -9,4 +9,6 @@ angular.module('geox', [
 	 'signUpCtrl',
      'dashboardCtrl',
      'geolocCtrl',
+     'attendanceCtrl',
+     'profileCtrl',
     ]);

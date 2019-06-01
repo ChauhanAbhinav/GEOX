@@ -19,7 +19,7 @@
 				<span class="user-logout">
 					<a>{{student.username}}</a> <a ng-click="logoutStudent()">Logout</a>
 				</span>
-				<div class="timer"> {{timer.hr}} : {{timer.min}} : {{timer.sec}}</div>
+				<div class="timer" ng-if="timer.sec"> {{timer.hr}} : {{timer.min}} : {{timer.sec}}</div>
 			</div>
 			
 		</div>
