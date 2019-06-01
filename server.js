@@ -19,7 +19,6 @@ var mainRoutes = require("./app/routes/mainRoutes.js")
 var loginRoutes = require("./app/routes/loginRoutes.js");
 var signupRoutes = require("./app/routes/signupRoutes.js");
 
-mainRoutes(app,path);
 
 //connection to mongoDB
 var mongo=require('mongodb');
@@ -28,6 +27,8 @@ mongo.connect(url,function(err, db){
 		if(err) throw err;
 		signupRoutes(app,db,path);
 		loginRoutes(app,db,path);
+		mainRoutes(app,db,path);
+
 		console.log("connected to mongodb");
 });
 app.listen(8080);
